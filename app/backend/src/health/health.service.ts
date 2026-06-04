@@ -2,7 +2,10 @@ import { Injectable, Inject } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PrismaService } from '../prisma/prisma.service';
 import { LoggerService } from '../logger/logger.service';
-import { OnchainAdapter, ONCHAIN_ADAPTER_TOKEN } from '../onchain/onchain.adapter';
+import {
+  OnchainAdapter,
+  ONCHAIN_ADAPTER_TOKEN,
+} from '../onchain/onchain.adapter';
 
 type CheckStatus = 'up' | 'down' | 'skipped';
 
