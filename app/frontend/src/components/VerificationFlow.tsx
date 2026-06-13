@@ -639,8 +639,8 @@ function StepUpload({
             {/* API error from a previous attempt */}
             {apiError && (
                 <div className="mb-6">
-                    <ErrorInline 
-                        error={apiError} 
+                    <ErrorInline
+                        error={apiError}
                         onRetry={onClearApiError}
                         onClose={onClearApiError}
                         variant="card"
