@@ -133,7 +133,7 @@ export default function ClaimReceiptPage() {
                   <span className="text-blue-600 dark:text-blue-400 font-bold">•</span>
                   <span>
                     This receipt proves that your claim has been processed and
-                    completed on the Soter platform.
+                    completed on the ChainForge platform.
                   </span>
                 </li>
                 <li className="flex gap-3">
@@ -167,7 +167,7 @@ export default function ClaimReceiptPage() {
               </h3>
               <p className="text-blue-800 dark:text-blue-200 text-sm">
                 If you have questions about your claim or receipt, please
-                contact our support team at support@soter.app
+                contact our support team at hello@chainforge.dev
               </p>
             </div>
           </div>
