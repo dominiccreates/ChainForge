@@ -1,4 +1,4 @@
-# Multi-stage Dockerfile for Soter AI Service with CUDA Support
+# Multi-stage Dockerfile for ChainForge AI Service with CUDA Support
 # Build stage with CUDA support for GPU acceleration
 FROM nvidia/cuda:12.1-runtime-ubuntu22.04 AS cuda-base
 
@@ -62,9 +62,9 @@ ENV LOG_LEVEL=DEBUG
 COPY . .
 
 # Create non-root user
-RUN useradd --create-home --shell /bin/bash soter && \
-    chown -R soter:soter /app
-USER soter
+RUN useradd --create-home --shell /bin/bash chainforge && \
+    chown -R chainforge:chainforge /app
+USER chainforge
 
 # Expose port
 EXPOSE 8000
@@ -125,9 +125,9 @@ RUN pip install --no-cache-dir --upgrade pip && \
 COPY . .
 
 # Create non-root user for security
-RUN useradd --create-home --shell /bin/bash soter && \
-    chown -R soter:soter /app
-USER soter
+RUN useradd --create-home --shell /bin/bash chainforge && \
+    chown -R chainforge:chainforge /app
+USER chainforge
 
 # Expose port
 EXPOSE 8000
@@ -156,9 +156,9 @@ RUN pip install --no-cache-dir --upgrade pip && \
 COPY . .
 
 # Create non-root user
-RUN useradd --create-home --shell /bin/bash soter && \
-    chown -R soter:soter /app
-USER soter
+RUN useradd --create-home --shell /bin/bash chainforge && \
+    chown -R chainforge:chainforge /app
+USER chainforge
 
 # Expose port
 EXPOSE 8000

@@ -34,8 +34,8 @@ class PIIScrubberService:
     }
 
     ALLOWLIST = {
-        "Soter", "Pulsefy", "Stellar", "Humanitarian", "Coordinator", 
-        "Manager", "Project", "Water", "Clear", "Crystal", "Coordinator"
+        "ChainForge", "Stellar", "Humanitarian", "Coordinator", 
+        "Manager", "Project", "Water", "Clear", "Crystal"
     }
 
     DATE_REGEXES = [

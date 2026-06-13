@@ -1,5 +1,5 @@
 """
-Test suite for Soter AI Service
+Test suite for ChainForge AI Service
 """
 
 import pytest
@@ -19,7 +19,7 @@ def test_root_endpoint(client):
     response = client.get("/")
     assert response.status_code == 200
     data = response.json()
-    assert data["service"] == "Soter AI Service"
+    assert data["service"] == "ChainForge AI Service"
     assert "version" in data
     assert data["docs"] == "/docs"
     assert data["health"] == "/health"
@@ -31,7 +31,7 @@ def test_health_endpoint(client):
     assert response.status_code == 200
     data = response.json()
     assert data["status"] == "healthy"
-    assert data["service"] == "soter-ai-service"
+    assert data["service"] == "chainforge-ai-service"
     assert "version" in data
 
 
@@ -65,7 +65,7 @@ def test_openapi_schema(client):
     data = response.json()
     
     assert data["openapi"] == "3.1.0" or data["openapi"].startswith("3.")
-    assert data["info"]["title"] == "Soter AI Service"
+    assert data["info"]["title"] == "ChainForge AI Service"
     assert data["info"]["version"] == "1.0.0"
 
 

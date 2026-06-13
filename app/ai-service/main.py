@@ -1,5 +1,5 @@
 """
-Soter AI Service - FastAPI Application
+ChainForge AI Service - FastAPI Application
 Main entry point for the AI service layer.
 
 """
@@ -72,7 +72,7 @@ _LEGACY_PREFIX_MAP: list = [
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    logger.info("Starting up Soter AI Service...")
+    logger.info("Starting up ChainForge AI Service...")
     if not settings.validate_api_keys():
         logger.warning("No API keys configured. AI features will be unavailable.")
     else:
@@ -83,12 +83,12 @@ async def lifespan(app: FastAPI):
     logger.info(f"Backend webhook URL: {settings.backend_webhook_url}")
 
     yield
-    logger.info("Shutting down Soter AI Service...")
+    logger.info("Shutting down ChainForge AI Service...")
 
 
 app = FastAPI(
-    title="Soter AI Service",
-    description="AI service layer for Soter platform using FastAPI",
+    title="ChainForge AI Service",
+    description="AI service layer for the ChainForge platform using FastAPI",
     version="1.0.0",
     lifespan=lifespan,
 )
@@ -271,7 +271,7 @@ async def get_metrics():
 
 @app.get("/health")
 async def health_check():
-    return {"status": "healthy", "service": "soter-ai-service", "version": "1.0.0"}
+    return {"status": "healthy", "service": "chainforge-ai-service", "version": "1.0.0"}
 
 
 @app.get("/health/dependencies")
@@ -321,7 +321,7 @@ async def health_dependencies():
 @app.get("/")
 async def root():
     return {
-        "service": "Soter AI Service",
+        "service": "ChainForge AI Service",
         "version": "1.0.0",
         "docs": "/docs",
         "health": "/health",

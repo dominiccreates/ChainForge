@@ -1,5 +1,5 @@
 """
-Configuration module for Soter AI Service
+Configuration module for ChainForge AI Service
 Handles environment variables and API key management
 """
 

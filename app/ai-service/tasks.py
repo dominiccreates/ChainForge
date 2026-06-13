@@ -1,5 +1,5 @@
 """
-Celery tasks for Soter AI Service
+Celery tasks for ChainForge AI Service
 Handles background task processing for heavy inference
 """
 
@@ -31,7 +31,7 @@ def get_celery_app() -> Celery:
     if celery_app is None:
         try:
             celery_app = Celery(
-                'soter_ai_service',
+                'chainforge_ai_service',
                 broker=settings.redis_url,
                 backend=settings.redis_url,
                 include=['tasks']
@@ -52,7 +52,7 @@ def get_celery_app() -> Celery:
         except Exception as e:
             logger.warning(f"Failed to initialize Celery: {e}. Task processing disabled.")
             # Return a dummy app that won't crash
-            celery_app = Celery('soter_ai_service')
+            celery_app = Celery('chainforge_ai_service')
     
     return celery_app
 
@@ -116,7 +116,7 @@ def send_webhook_notification(task_id: str, status: str, result: Any = None, err
     payload = {
         'task_id': task_id,
         'status': status,
-        'service': 'soter-ai-service',
+        'service': 'chainforge-ai-service',
         'timestamp': time.time(),
     }
     
