@@ -36,7 +36,7 @@ def get_celery_app() -> Celery:
                 backend=settings.redis_url,
                 include=['tasks']
             )
-            
+
             # Celery configuration
             celery_app.conf.update(
                 task_serializer='json',
