@@ -39,12 +39,12 @@ def test_health_response_structure(client):
     """Test that health endpoint returns correct structure"""
     response = client.get("/health")
     data = response.json()
-    
+   
     # Check required fields
     assert "status" in data
     assert "service" in data
     assert "version" in data
-    
+   
     # Check field types
     assert isinstance(data["status"], str)
     assert isinstance(data["service"], str)
@@ -63,7 +63,7 @@ def test_openapi_schema(client):
     response = client.get("/openapi.json")
     assert response.status_code == 200
     data = response.json()
-    
+   
     assert data["openapi"] == "3.1.0" or data["openapi"].startswith("3.")
     assert data["info"]["title"] == "ChainForge AI Service"
     assert data["info"]["version"] == "1.0.0"
