@@ -1,45 +1,48 @@
-# Soter Frontend
+# ChainForge Frontend
 
-The frontend for Soter, built with Next.js 15+, providing a modern, responsive interface for transparent humanitarian aid distribution on the Stellar blockchain.
+Modern, responsive web interface for transparent humanitarian aid distribution on the Stellar blockchain, built with Next.js.
 
 ## Overview
 
-This Next.js application serves as the user-facing interface for the Soter platform, enabling:
+ChainForge's frontend serves as the user-facing portal, enabling:
 
-- **Donor Dashboard**: Create and manage aid campaigns
-- **Recipient Portal**: Claim aid packages via wallet connection
-- **Live Maps**: Visualize aid distribution using Leaflet
-- **AI Verification**: Client-side need verification workflows
-- **Blockchain Integration**: Connect with Stellar wallets (Freighter) and interact with Soroban smart contracts
+- **Donor Dashboard** — Create, monitor, and manage aid campaigns
+- **Recipient Portal** — Claim aid packages via Stellar wallet connection
+- **Live Distribution Maps** — Visualize aid deployment using Leaflet
+- **AI-Powered Verification** — Privacy-preserving evidence analysis
+- **Blockchain Anchoring** — Interact with Soroban smart contracts through Freighter
 
 ## Tech Stack
 
-- **Framework**: Next.js 16 (App Router)
-- **Language**: TypeScript 5.9
-- **Styling**: Tailwind CSS 4
-- **UI Components**: Radix UI
-- **Data Fetching**: React Query (TanStack Query)
-- **Mapping**: Leaflet + React Leaflet
-- **Blockchain**: Stellar SDK, Freighter Wallet API
-- **Linting**: ESLint 9
+| Layer | Technology |
+|-------|-----------|
+| Framework | Next.js 16 (App Router) |
+| Language | TypeScript 5.9 |
+| Styling | Tailwind CSS 4 |
+| UI Primitives | Radix UI |
+| Data Fetching | TanStack React Query |
+| Mapping | Leaflet + React-Leaflet |
+| Blockchain | Stellar SDK, Freighter Wallet API |
+| Linting | ESLint 9 |
+| i18n | next-intl (en, es, fr) |
 
 ## Project Structure
 
 ```
 src/
-├── app/                    # Next.js app router
-│   ├── api/               # API routes (health check, etc.)
-│   ├── layout.tsx         # Root layout with providers
-│   ├── page.tsx           # Homepage
-│   └── globals.css        # Global styles
-├── components/            # React components (to be added)
-│   ├── ui/               # Radix UI components
-│   └── features/         # Feature-specific components
-├── lib/                   # Utilities and providers
-│   └── query-provider.tsx # React Query setup
-├── hooks/                 # Custom React hooks
-├── types/                 # TypeScript type definitions
-└── config/                # Configuration files
+├── app/               # Next.js App Router pages
+│   ├── [locale]/      # Localized routes (en, es, fr)
+│   ├── api/           # API routes (health, etc.)
+│   ├── layout.tsx     # Root layout with providers
+│   └── globals.css    # Global styles
+├── components/        # React components
+│   ├── ui/            # Reusable primitives (Radix-based)
+│   └── features/      # Domain-specific components
+├── lib/               # Utilities, API clients, providers
+├── hooks/             # Custom React hooks
+├── types/             # TypeScript type definitions
+├── messages/          # i18n translation files
+└── config/            # Configuration
 ```
 
 ## Getting Started
@@ -47,322 +50,153 @@ src/
 ### Prerequisites
 
 - Node.js ≥ 18
-- pnpm (recommended) or npm/yarn
-- A Stellar wallet (e.g., Freighter extension)
+- pnpm (preferred) or npm
+- Freighter browser extension (for wallet integration)
 
 ### Installation
 
-From the monorepo root (`app/`):
-
 ```bash
+# From monorepo root
 pnpm install
-```
 
-Or from this directory:
-
-```bash
-cd app/frontend
-pnpm install
+# Or from this directory
+cd app/frontend && pnpm install
 ```
 
 ### Environment Setup
-
-1. Copy the example environment file:
 
 ```bash
 cp .env.example .env.local
 ```
 
-2. Configure the variables in `.env.local`:
+Configure key variables:
 
 ```bash
-# API Configuration
 NEXT_PUBLIC_API_URL=http://localhost:4000
-
-# Stellar Network (testnet, futurenet, or mainnet)
 NEXT_PUBLIC_STELLAR_NETWORK=testnet
-# Optional alias: NEXT_PUBLIC_NETWORK is used if NEXT_PUBLIC_STELLAR_NETWORK is not set
 NEXT_PUBLIC_STELLAR_HORIZON_URL=https://horizon-testnet.stellar.org
 NEXT_PUBLIC_STELLAR_SOROBAN_RPC_URL=https://soroban-testnet.stellar.org
-
-# Optional: application environment label (dev, staging, prod) — shown in the navbar
-# NEXT_PUBLIC_ENV_NAME=dev
-
-# Contract IDs (get these after deploying contracts)
 NEXT_PUBLIC_AID_ESCROW_CONTRACT_ID=your_contract_id
-NEXT_PUBLIC_VERIFICATION_CONTRACT_ID=your_contract_id
 ```
 
-The navbar displays a small **network & environment indicator** (e.g. “Network: testnet”, “Environment: dev”) so contributors and testers always know which Stellar network and app environment they are using. These values come from `NEXT_PUBLIC_STELLAR_NETWORK` (or `NEXT_PUBLIC_NETWORK`) and optional `NEXT_PUBLIC_ENV_NAME`; they are safe to expose in production and contain no secrets.
+The navbar displays a **network & environment indicator** so contributors always know which Stellar network and app environment they are targeting. These values come from `NEXT_PUBLIC_STELLAR_NETWORK` and optional `NEXT_PUBLIC_ENV_NAME`; they are safe to expose in production.
 
 ### Development
 
-Run the development server:
-
 ```bash
-# From monorepo root
-pnpm --filter frontend dev
-
-# Or from this directory
 pnpm dev
+# or: pnpm --filter frontend dev (from monorepo root)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000) — hot reload is enabled.
 
-The app uses hot module replacement (HMR) - changes are reflected immediately.
-
-### Build
-
-Build for production:
+### Production Build
 
 ```bash
 pnpm build
-```
-
-Test the production build locally:
-
-```bash
 pnpm start
 ```
 
 ## Available Scripts
 
-| Script       | Description                                    |
-| ------------ | ---------------------------------------------- |
-| `dev`        | Start development server on port 3000          |
-| `build`      | Create optimized production build              |
-| `start`      | Run production server                          |
-| `lint`       | Run ESLint for code quality checks             |
-| `type-check` | Run TypeScript compiler without emitting files |
-| `test`       | Run test suite (placeholder for now)           |
+| Script       | Purpose                            |
+|-------------|-------------------------------------|
+| `dev`       | Start development server (port 3000)|
+| `build`     | Create optimized production build   |
+| `start`     | Serve production build locally      |
+| `lint`      | Run ESLint (zero-warnings policy)   |
+| `type-check`| TypeScript compiler check (`--noEmit`) |
+| `test`      | Run Jest test suite                 |
 
 ## Health Check
 
-The frontend includes a health check endpoint for monitoring:
+```http
+GET /api/health
+```
 
-**Endpoint**: `GET /api/health`
-
-**Response**:
+Response:
 
 ```json
 {
   "status": "ok",
   "timestamp": "2026-01-19T00:00:00.000Z",
-  "service": "soter-frontend"
+  "service": "chainforge-frontend"
 }
 ```
 
-Use this endpoint in CI/CD pipelines, monitoring tools, or health check probes.
-
 ## Mock API
 
-To enable the mock API layer for development when the backend is unavailable:
+When the backend is unavailable, enable the mock API layer:
 
-1.  Set `NEXT_PUBLIC_USE_MOCKS=true` in your `.env.local` file.
-2.  The application will intercept requests to supported endpoints (e.g., `/health`, `/aid-packages`) and return mock data.
-3.  Mock handlers are defined in `src/lib/mock-api/handlers.ts`.
+```bash
+NEXT_PUBLIC_USE_MOCKS=true
+```
 
-## Key Features Implementation
+The app will intercept requests to supported endpoints (e.g., `/health`, `/aid-packages`) and return realistic fixtures defined in `src/lib/mock-api/handlers.ts`.
 
-### React Query Setup
+## Key Features
 
-Data fetching is handled by React Query with configured defaults:
+### React Query
 
-- Stale time: 60 seconds
-- Refetch on window focus: disabled
-
-Provider is located at `src/lib/query-provider.tsx` and wrapped in the root layout.
+Configured with 60-second stale time and refetch-on-window-focus disabled. Provider in `src/lib/query-provider.tsx`.
 
 ### Radix UI Components
 
-Pre-installed Radix primitives:
-
-- `@radix-ui/react-dialog` - Modal dialogs
-- `@radix-ui/react-dropdown-menu` - Dropdown menus
-- `@radix-ui/react-toast` - Toast notifications
-- `@radix-ui/react-avatar` - User avatars
-- `@radix-ui/react-select` - Select inputs
-- `@radix-ui/react-slot` - Composition utility
-
-Create custom components in `src/components/ui/`.
+Pre-installed primitives: Dialog, Dropdown Menu, Select, Toast, Avatar, Slot. Components live in `src/components/ui/`.
 
 ### Leaflet Maps
 
-For mapping aid distributions:
+Leaflet requires client-side rendering. Use dynamic imports with `ssr: false`:
 
 ```tsx
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-
-// Use in components
-<MapContainer center={[51.505, -0.09]} zoom={13}>
-  <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-  <Marker position={[51.505, -0.09]}>
-    <Popup>Aid Distribution Point</Popup>
-  </Marker>
-</MapContainer>;
+const AidMap = dynamic(() => import('@/components/maps/AidMap'), { ssr: false });
 ```
 
-**Note**: Leaflet requires client-side rendering. Use `dynamic` imports with `ssr: false` for map components.
-
-### Stellar Wallet Integration
-
-Connect with Freighter wallet (to be implemented):
+### Wallet Integration
 
 ```tsx
 import { isConnected, getPublicKey } from '@stellar/freighter-api';
 
-// Check if wallet is available
 const hasWallet = await isConnected();
-
-// Get user's public key
 const publicKey = await getPublicKey();
-```
-
-## Development Guidelines
-
-### Code Style
-
-- Use TypeScript for all new files
-- Follow ESLint rules (run `pnpm lint`)
-- Use functional components with hooks
-- Prefer named exports for components
-- Use Tailwind utility classes for styling
-
-### Component Organization
-
-```tsx
-// Component template
-interface MyComponentProps {
-  title: string;
-  onAction?: () => void;
-}
-
-export function MyComponent({ title, onAction }: MyComponentProps) {
-  return <div>{title}</div>;
-}
-```
-
-### State Management
-
-- **Server state**: React Query
-- **Client state**: React hooks (useState, useReducer)
-- **Global state**: Context API (if needed)
-
-### API Calls
-
-Use React Query hooks for data fetching:
-
-```tsx
-import { useQuery } from '@tanstack/react-query';
-
-function useCampaigns() {
-  return useQuery({
-    queryKey: ['campaigns'],
-    queryFn: async () => {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/campaigns`);
-      return res.json();
-    },
-  });
-}
 ```
 
 ## Troubleshooting
 
-### Port Already in Use
-
-If port 3000 is occupied:
-
-```bash
-# Windows PowerShell
-netstat -ano | findstr :3000
-taskkill /PID <PID> /F
-
-# Or use a different port
-pnpm dev -- -p 3001
-```
-
-### Hydration Errors
-
-Common with server/client mismatches. For client-only components:
-
-```tsx
-import dynamic from 'next/dynamic';
-
-const MapComponent = dynamic(() => import('./MapComponent'), { ssr: false });
-```
-
-### Environment Variables Not Loading
-
-- Ensure variables start with `NEXT_PUBLIC_` for client-side access
-- Restart dev server after changing `.env.local`
-- Check that `.env.local` is in the frontend root (not `src/`)
-
-### Type Errors with Leaflet
-
-If you encounter Leaflet type issues:
-
-```bash
-pnpm add -D @types/leaflet
-```
-
-### Build Failures
-
-```bash
-# Clear Next.js cache
-rm -rf .next
-
-# Reinstall dependencies
-rm -rf node_modules pnpm-lock.yaml
-pnpm install
-
-# Type check
-pnpm type-check
-```
+| Problem | Solution |
+|---------|----------|
+| Port 3000 in use | `pnpm dev -- -p 3001` |
+| Hydration errors | Wrap Leaflet/Freighter components with `dynamic(..., { ssr: false })` |
+| ENV vars undefined | Must start with `NEXT_PUBLIC_`; restart dev server after changes |
+| Type errors | Check `@types/leaflet` is installed; run `pnpm type-check` |
+| Stale builds | `rm -rf .next && pnpm install` |
 
 ## Deployment
 
-### Vercel (Recommended)
+### Vercel
 
 1. Connect your GitHub repository to Vercel
-2. Set the root directory to `app/frontend`
-3. Add environment variables in the Vercel dashboard
+2. Set root directory to `app/frontend`
+3. Configure environment variables in Vercel dashboard
 4. Deploy
 
 ```bash
-# Or via CLI
 cd app/frontend
 vercel --prod
 ```
 
-### Docker
-
-(To be added based on project needs)
-
 ## Testing
 
-Tests will be added as the project matures. Planned testing stack:
-
-- **Unit**: Jest + React Testing Library
-- **E2E**: Playwright
-- **Integration**: Testing against local backend
-
-## Contributing
-
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for development workflow, commit conventions, and PR guidelines.
+- **Unit/Integration**: Jest + React Testing Library
+- **E2E** (planned): Playwright
 
 ## Related Documentation
 
-- [Root README](../../README.md) - Project overview
-- [Backend README](../backend/README.md) - API documentation
-- [Contracts README](../contracts/README.md) - Smart contract details
-- [Next.js Docs](https://nextjs.org/docs)
-- [Stellar Docs](https://developers.stellar.org)
-
-## License
-
-MIT - See [LICENSE](../../LICENSE) for details.
+- [Root README](../../README.md) — Project overview
+- [Backend README](../backend/README.md) — API documentation
+- [On-Chain README](../onchain/README.md) — Smart contract reference
+- [Contributing Guide](./CONTRIBUTING.md) — Development workflow
 
 ---
 
-**Built with ❤️ for transparent humanitarian aid** 🌍
+**Built for transparent humanitarian aid distribution on Stellar.** 🌍
