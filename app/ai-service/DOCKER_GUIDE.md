@@ -106,7 +106,7 @@ docker run -d --name ai-service-gpu \
   --gpus all \
   -p 8000:8000 \
   -e REDIS_URL=redis://host.docker.internal:6379/0 \
-  soter-ai-service:gpu
+  chainforge-ai-service:gpu
 ```
 
 4. **Or use Docker Compose with GPU profile:**
