@@ -34,7 +34,7 @@ export const ForceUpgradeScreen: React.FC = () => {
         </Text>
         
         <Text style={[styles.description, { color: colors.textSecondary }]}>
-          A critical update is available for Soter. To continue using the app safely and access the latest security fixes, please update to the latest version.
+          A critical update is available for ChainForge. To continue using the app safely and access the latest security fixes, please update to the latest version.
         </Text>
 
         <View style={[styles.infoBox, { backgroundColor: colors.surface, borderColor: colors.border }]}>

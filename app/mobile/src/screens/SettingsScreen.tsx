@@ -45,7 +45,7 @@ export const SettingsScreen: React.FC = () => {
     } else {
       Alert.alert(
         'Disable Notifications',
-        'To disable push notifications, please turn them off in your device settings for Soter.',
+        'To disable push notifications, please turn them off in your device settings for ChainForge.',
       );
     }
   };

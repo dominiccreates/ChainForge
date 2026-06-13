@@ -54,8 +54,8 @@ export const BulkScannerScreen: React.FC<Props> = ({ navigation }) => {
     if (isProcessing) return;
     setIsProcessing(true);
 
-    // Check if it's the correct format: soter://package/{id}
-    const regex = /^soter:\/\/package\/(.+)$/;
+    // Check if it's the correct format: chainforge://package/{id}
+    const regex = /^chainforge:\/\/package\/(.+)$/;
     const match = data.match(regex);
 
     setStats(prev => ({ ...prev, scanned: prev.scanned + 1 }));
@@ -80,7 +80,7 @@ export const BulkScannerScreen: React.FC<Props> = ({ navigation }) => {
       }
     } else {
       setStats(prev => ({ ...prev, failed: prev.failed + 1 }));
-      setLastScanResult({ status: 'error', message: 'Invalid Soter QR code.' });
+      setLastScanResult({ status: 'error', message: 'Invalid ChainForge QR code.' });
     }
 
     // Short delay before allowing the next scan to provide feedback

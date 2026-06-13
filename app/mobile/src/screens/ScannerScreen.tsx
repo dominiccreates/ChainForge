@@ -21,7 +21,7 @@ interface Props {
 export const parseAidIdFromQRCode = (data: string): string | null => {
   const trimmed = data.trim();
 
-  const deepLinkRegex = /^soter:\/\/(?:testnet\/)?package\/([^\/?#]+)(?:[\/?#].*)?$/i;
+  const deepLinkRegex = /^chainforge:\/\/(?:testnet\/)?package\/([^\/?#]+)(?:[\/?#].*)?$/i;
   const deepLinkMatch = trimmed.match(deepLinkRegex);
   if (deepLinkMatch?.[1]) {
     return decodeURIComponent(deepLinkMatch[1]);
@@ -29,7 +29,7 @@ export const parseAidIdFromQRCode = (data: string): string | null => {
 
   try {
     const url = new URL(trimmed);
-    const hostMatches = /(^|\.)soter\.app$/i.test(url.hostname);
+    const hostMatches = /(^|\.)chainforge\.app$/i.test(url.hostname);
     if ((url.protocol === 'https:' || url.protocol === 'http:') && hostMatches) {
       const pathMatch = url.pathname.match(/^\/(?:testnet\/)?package\/([^\/?#]+)(?:[\/?#].*)?$/i);
       if (pathMatch?.[1]) {
@@ -69,7 +69,7 @@ export const ScannerScreen: React.FC<Props> = ({ navigation }) => {
 
     Alert.alert(
       'Invalid QR Code',
-      'This QR code is not a valid Soter package link. Please scan a Soter QR code.',
+      'This QR code is not a valid ChainForge package link. Please scan a ChainForge QR code.',
       [{ text: 'Try Again', onPress: () => setScanned(false) }],
     );
   };

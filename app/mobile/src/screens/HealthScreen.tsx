@@ -131,7 +131,7 @@ export const HealthScreen = () => {
         ? 'Unreachable' 
         : 'Checking...';
 
-    const diagnosticsText = `Soter App Diagnostics
+    const diagnosticsText = `ChainForge App Diagnostics
 ---------------------
 App Version: ${appVersion}
 Platform: ${Platform.OS === 'android' ? 'Android' : 'iOS'}

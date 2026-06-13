@@ -82,7 +82,7 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
           </TouchableOpacity>
 
           {/* App title — decorative, not interactive */}
-          <Text style={styles.title} accessibilityRole="header">Soter</Text>
+          <Text style={styles.title} accessibilityRole="header">ChainForge</Text>
 
           <View
             style={styles.badge}
@@ -101,7 +101,7 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
             Transparent aid, directly delivered.
           </Text>
           <Text style={styles.description}>
-            Soter utilizes the Stellar network and Soroban smart contracts to
+            ChainForge utilizes the Stellar network and Soroban smart contracts to
             ensure aid reaches those in need with 100% transparency. Our
             automated escrow system guarantees that every donation is tracked
             and verified on-chain.
@@ -134,7 +134,7 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
           </View>
 
           <Text style={styles.walletDescription}>
-            Connect a compatible Stellar wallet with WalletConnect v2. Soter
+            Connect a compatible Stellar wallet with WalletConnect v2. ChainForge
             also listens for deep links so the app can support wallet handoff
             and transaction signing flows on mobile.
           </Text>
@@ -291,7 +291,7 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
         activeOpacity={0.8}
         accessibilityRole="button"
         accessibilityLabel="Scan QR Code"
-        accessibilityHint="Opens the camera to scan a Soter QR code"
+        accessibilityHint="Opens the camera to scan a ChainForge QR code"
       >
         <Text style={styles.scannerFabIcon} accessibilityElementsHidden>📷</Text>
       </TouchableOpacity>
