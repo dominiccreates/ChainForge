@@ -229,7 +229,7 @@ export const EnhancedVerificationFlow: React.FC = () => {
     // eslint-disable-next-line react-hooks/preserve-manual-memoization
     const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        
+       
         // 1. Client-side validation
         const validationErrors = validateUploadForm(imageFile, textInput);
         if (Object.keys(validationErrors).length > 0) {
@@ -252,7 +252,7 @@ export const EnhancedVerificationFlow: React.FC = () => {
 
         // 3. Create evidence artifact
         const evidenceArtifact = createMockEvidenceArtifact(imageFile, trimmedText, false);
-        
+       
         // 4. Build FormData
         const form = new FormData();
         if (imageFile) {
@@ -417,7 +417,7 @@ export const EnhancedVerificationFlow: React.FC = () => {
                             />
                         </div>
                     )}
-                    
+                   
                     {flowState.apiError && (
                         <div
                             role="alert"
@@ -548,14 +548,14 @@ export const EnhancedVerificationFlow: React.FC = () => {
                             Back to Upload
                         </button>
                     </div>
-                    
+                   
                     <EvidenceArtifactViewer
                         artifact={flowState.evidenceArtifact}
                         onRedactionChange={handleRedactionChange}
                         onArtifactUpdate={handleArtifactUpdate}
                         className="mb-4"
                     />
-                    
+                   
                     <RedactionControls
                         artifact={flowState.evidenceArtifact}
                         isEditing={false} // Will be managed by the viewer component
@@ -568,7 +568,7 @@ export const EnhancedVerificationFlow: React.FC = () => {
                         onAutoRedaction={handleAutoRedaction}
                         onClearAllRedactions={handleClearAllRedactions}
                     />
-                    
+                   
                     <div className="mt-4 flex justify-end">
                         <button
                             onClick={() => setFlowState(prev => ({ ...prev, step: 'result' }))}
